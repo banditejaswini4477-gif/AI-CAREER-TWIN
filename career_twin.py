@@ -58,3 +58,17 @@ elif ml>=4:
     print("Machine Learning: Average")
 else:
     print("Machine Learning: Weak")
+
+
+print("\n ===== CAREER READINESS =====")
+
+score=(java+dsa+python+sql+ml)/50*100
+print("Career Readiness Score:",round(score,2),"%")
+if score>=80:
+    print("Status: Excellent")
+elif score>=60:
+    print("Status: Good")
+elif score>=40:
+    print("Status: Needs Improvement")
+else:
+    print("Status: Beginner")
