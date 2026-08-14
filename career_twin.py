@@ -27,14 +27,12 @@ elif java>=4:
 else:
     print("java: Weak")
 
-
 if dsa>=7:
     print("DSA: Strong")
 elif dsa>=4:
     print("DSA: Average")
 else:
     print("DSA: Weak")
-
 
 if python>=7:
     print("python: Strong")
@@ -43,14 +41,12 @@ elif python>=4:
 else:
     print("python: Weak")
 
-
 if sql>=7:
     print("SQL: Strong")
 elif sql>=4:
     print("SQL: Average")
 else:
     print("SQL: Weak")
-
 
 if ml>=7:
     print("Machine Learning: Strong")
@@ -72,3 +68,28 @@ elif score>=40:
     print("Status: Needs Improvement")
 else:
     print("Status: Beginner")
+
+
+print("\n===== SKILL GAP =====")
+
+weakest_skill="java"
+lowest_score=java
+
+if dsa<lowest_score:
+    weakest_skill="DSA"
+    lowest_score=dsa
+
+if python<lowest_score:
+    weakest_skill="Python"
+    lowest_score=python
+
+if sql<lowest_score:
+    weakest_skill="SQL"
+    lowest_score=sql
+
+if ml<lowest_score:
+    weakest_skill="Machine Learing"
+    lowest_score=ml
+
+print("weakest_skill:",weakest_skill)
+print("Current Level:",lowest_score)
