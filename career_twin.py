@@ -120,3 +120,23 @@ else:
 
     for skill in weak_skills:
         print("-",skill)
+
+
+print("\n ===== JOB REQUIREMENT ANALYSIS =====")
+
+job=target.lower()
+
+if "ai" in job or "ml" in job:
+    required_skills=["Python","DSA","SQL","Machine Learning","Deep Learning"]
+
+elif "software" in job or "developer" in job:
+    required_skills=["Java","DSA","SQL","OOP"]
+
+else:
+    required_skills=["DSA","SQL","Python"]
+
+print("Target Job:",target)
+print("Required Skills:")
+
+for skill in required_skills:
+    print("-",skill)
