@@ -93,3 +93,30 @@ if ml<lowest_score:
 
 print("weakest_skill:",weakest_skill)
 print("Current Level:",lowest_score)
+
+
+print("\n ===== ALL SKILLGAPS =====")
+weak_skills=[]
+if java<4:
+    weak_skills.append("Java")
+    
+if dsa<4:
+    weak_skills.append("DSA")
+    
+if python<4:
+    weak_skills.append("Python")
+    
+if sql<4:
+    weak_skills.append("SQL")
+    
+if ml<4:
+    weak_skills.append("Machine Learning")
+    
+if len(weak_skills)==0:
+    print("No Weak Skills")
+    
+else:
+    print("Weak Skills:")
+
+    for skill in weak_skills:
+        print("-",skill)
