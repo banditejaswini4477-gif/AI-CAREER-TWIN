@@ -6,6 +6,8 @@ dsa=int(input("DSA level(1-10):"))
 python=int(input("Python level(1-10):"))
 sql=int(input("SQL level(1-10):"))
 ml=int(input("ML level(1-10):"))
+oop=int(input("OOP level(1-10):"))
+dl=int(input("Deep Learning Level(1-10):"))
 
 print("\n===== YOUR CAREER PROFILE =====")
 print("Name:",name)
@@ -15,7 +17,8 @@ print("DSA:",dsa)
 print("Python:",python)
 print("SQL:",sql)
 print("ML:",ml)
-
+print("OOP:",oop)
+print("Deep Learning:",dl)
 
 
 print("\n===== SKILL ANALYSIS =====")
@@ -55,10 +58,24 @@ elif ml>=4:
 else:
     print("Machine Learning: Weak")
 
+if oop>=7:
+    print("object oriented programing:Strong")
+elif oop>=4:
+    print("object oriented programing:Average")
+else:
+    print("object oriented programing:Weak")
+
+if dl>=7:
+    print("Deep Learning: Strong")
+elif dl>=4:
+    print("Deep Learning: Average")
+else:
+    print("Deep Learning: Weak")
+
 
 print("\n ===== CAREER READINESS =====")
 
-score=(java+dsa+python+sql+ml)/50*100
+score=(java+dsa+python+sql+ml+oop+dl)/70*100
 print("Career Readiness Score:",round(score,2),"%")
 if score>=80:
     print("Status: Excellent")
@@ -88,33 +105,48 @@ if sql<lowest_score:
     lowest_score=sql
 
 if ml<lowest_score:
-    weakest_skill="Machine Learing"
+    weakest_skill="Machine Learning"
     lowest_score=ml
+
+if oop<lowest_score:
+    weakest_skill="object oriented programing"
+    lowest_score=oop
+
+if dl<lowest_score:
+    weakest_skill="Deep Learning"
+    lowest_score=dl
 
 print("weakest_skill:",weakest_skill)
 print("Current Level:",lowest_score)
 
 
 print("\n ===== ALL SKILLGAPS =====")
+
 weak_skills=[]
+
 if java<4:
     weak_skills.append("Java")
-    
+
 if dsa<4:
     weak_skills.append("DSA")
-    
+
 if python<4:
     weak_skills.append("Python")
-    
+
 if sql<4:
     weak_skills.append("SQL")
-    
+
 if ml<4:
     weak_skills.append("Machine Learning")
-    
+
+if oop<4:
+    weak_skills.append("object oriented programing")
+
+if dl<4:
+    weak_skills.append("Deep Learning")
+
 if len(weak_skills)==0:
     print("No Weak Skills")
-    
 else:
     print("Weak Skills:")
 
@@ -140,3 +172,33 @@ print("Required Skills:")
 
 for skill in required_skills:
     print("-",skill)
+
+
+print("\n ===== SKILL MATCH ANALYSIS =====")
+
+missing_skills=[]
+
+for skill in required_skills:
+    if skill=="Java" and java==0:
+        missing_skills.append(skill)
+    elif skill=="DSA" and dsa==0:
+        missing_skills.append(skill)
+    elif skill=="SQL" and sql==0:
+        missing_skills.append(skill)
+    elif skill=="OOP" and oop==0:
+        missing_skills.append(skill)
+    elif skill=="Python" and python==0:
+        missing_skills.append(skill)
+    elif skill=="Machine Learning" and ml==0:
+        missing_skills.append(skill)
+    elif skill=="Deep Learning" and dl==0:
+            missing_skills.append(skill)
+
+print("Target job:",target)
+print("Missing skills:")
+if len(missing_skills)==0:
+    print("No missing skills!")
+else:
+    for skill in missing_skills:
+        print("-",skill)
+
