@@ -202,3 +202,75 @@ else:
     for skill in missing_skills:
         print("-",skill)
 
+
+print("\n ===== PERSONALIZED ROADMAP ======")
+roadmaps={
+    "Machine Learning":[
+        "Python for machine learning",
+        "NumPy and Pandas",
+        "Machine Learning Basics",
+        "Model Evaluation",
+        "Build a Machine Learning project"],
+    "DSA":["Arrays",
+        "Strings",
+        "Hashing",
+        "Two pointers",
+        "Trees"
+           ],
+    "Python":[
+        "Python Basics",
+        "Functions",
+        "Lists and Dictionaries",
+        "OOP in Python",
+        "Python Project"
+    ],
+    "Sql":[
+        "SQL Basics",
+        "Joins",
+        "Subqueries",
+        "Grouping and Aggregation",
+        "Advanced SQL"
+    ],
+    "Deep Learning":[
+        "Nueral Networks",
+        "Deep Learning Basics",
+        "CNN",
+        "RNN",
+        "Build a deep Learning Project"
+    ],
+    "Java":[
+        "Java Basics",
+        "Variables and Data Types",
+        "Conditions and Loops",
+        "Arrays",
+        "Methods",
+        "Collections",
+        "Exception Handling",
+        "File Handling",
+        "Practice java problems"
+    ],
+    "OOP":[
+        "Classes and Objects",
+        "Constructors",
+        "Encapsulation",
+        "Inheritance",
+        "Polymorphism",
+        "Abstraction",
+        "Interfaces",
+        "Practice OOP Problems"
+    ]}
+def show_roadmap(skill):
+
+    if skill in roadmaps:
+
+        print("\n Roadmap for",skill)
+
+        topics=roadmaps[skill]
+
+        for i in range(len(topics)):
+            print(i+1,"-",topics[i])
+    else:
+        print("Roadmap is not available yet.")
+
+for skill in missing_skills:
+    show_roadmap(skill)
