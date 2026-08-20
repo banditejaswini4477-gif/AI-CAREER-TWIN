@@ -1,276 +1,284 @@
-print("=====AI CAREER TWIN=====")
-name=input("Enter your name:")
-target=input("Enter yor target job:")
-java=int(input("Java level(1-10):"))
-dsa=int(input("DSA level(1-10):"))
-python=int(input("Python level(1-10):"))
-sql=int(input("SQL level(1-10):"))
-ml=int(input("ML level(1-10):"))
-oop=int(input("OOP level(1-10):"))
-dl=int(input("Deep Learning Level(1-10):"))
+print("===== AI CAREER TWIN =====")
 
-print("\n===== YOUR CAREER PROFILE =====")
-print("Name:",name)
-print("Target:",target)
-print("Java:",java)
-print("DSA:",dsa)
-print("Python:",python)
-print("SQL:",sql)
-print("ML:",ml)
-print("OOP:",oop)
-print("Deep Learning:",dl)
+# ================= USER PROFILE =================
+
+name = input("Enter your name: ")
+target = input("Enter your target job: ").lower()
 
 
-print("\n===== SKILL ANALYSIS =====")
+# ================= JOB DATABASE =================
 
-if java>=7:
-    print("java: Strong")
-elif java>=4:
-    print("java: Average")
+jobs = {
+
+    "ai engineer": {
+        "skills": ["Python", "DSA", "SQL", "Machine Learning", "Deep Learning"],
+        "description": "AI Engineers build and deploy AI and Machine Learning systems."
+    },
+
+    "java developer": {
+        "skills": ["Java", "DSA", "OOP", "SQL"],
+        "description": "Java Developers build software applications using Java."
+    },
+
+    "software developer": {
+        "skills": ["Java", "DSA", "OOP", "SQL"],
+        "description": "Software Developers design, build and maintain software."
+    },
+
+    "data scientist": {
+        "skills": ["Python", "SQL", "Machine Learning", "Deep Learning"],
+        "description": "Data Scientists analyze data and build predictive models."
+    }
+}
+
+
+# ================= CHECK TARGET JOB =================
+
+if target not in jobs:
+
+    print("\nJob not available.")
+    print("Available jobs:")
+
+    for job in jobs:
+        print("-", job)
+
 else:
-    print("java: Weak")
 
-if dsa>=7:
-    print("DSA: Strong")
-elif dsa>=4:
-    print("DSA: Average")
-else:
-    print("DSA: Weak")
+    required_skills = jobs[target]["skills"]
 
-if python>=7:
-    print("python: Strong")
-elif python>=4:
-    print("python: Average")
-else:
-    print("python: Weak")
+    # ================= JOB REQUIREMENT ANALYSIS =================
 
-if sql>=7:
-    print("SQL: Strong")
-elif sql>=4:
-    print("SQL: Average")
-else:
-    print("SQL: Weak")
+    print("\n===== JOB REQUIREMENT ANALYSIS =====")
 
-if ml>=7:
-    print("Machine Learning: Strong")
-elif ml>=4:
-    print("Machine Learning: Average")
-else:
-    print("Machine Learning: Weak")
+    print("Target Job:", target.title())
 
-if oop>=7:
-    print("object oriented programing:Strong")
-elif oop>=4:
-    print("object oriented programing:Average")
-else:
-    print("object oriented programing:Weak")
+    print("Job Description:")
+    print(jobs[target]["description"])
 
-if dl>=7:
-    print("Deep Learning: Strong")
-elif dl>=4:
-    print("Deep Learning: Average")
-else:
-    print("Deep Learning: Weak")
+    print("\nRequired Skills:")
+
+    for skill in required_skills:
+        print("-", skill)
 
 
-print("\n ===== CAREER READINESS =====")
+    # ================= USER SKILL INPUT =================
 
-score=(java+dsa+python+sql+ml+oop+dl)/70*100
-print("Career Readiness Score:",round(score,2),"%")
-if score>=80:
-    print("Status: Excellent")
-elif score>=60:
-    print("Status: Good")
-elif score>=40:
-    print("Status: Needs Improvement")
-else:
-    print("Status: Beginner")
+    print("\n===== ENTER YOUR SKILL LEVELS =====")
 
+    skills = {}
 
-print("\n===== SKILL GAP =====")
+    for skill in required_skills:
 
-weakest_skill="java"
-lowest_score=java
+        level = int(input(
+            "Enter your " + skill + " level (1-10): "
+        ))
 
-if dsa<lowest_score:
-    weakest_skill="DSA"
-    lowest_score=dsa
-
-if python<lowest_score:
-    weakest_skill="Python"
-    lowest_score=python
-
-if sql<lowest_score:
-    weakest_skill="SQL"
-    lowest_score=sql
-
-if ml<lowest_score:
-    weakest_skill="Machine Learning"
-    lowest_score=ml
-
-if oop<lowest_score:
-    weakest_skill="object oriented programing"
-    lowest_score=oop
-
-if dl<lowest_score:
-    weakest_skill="Deep Learning"
-    lowest_score=dl
-
-print("weakest_skill:",weakest_skill)
-print("Current Level:",lowest_score)
+        skills[skill] = level
 
 
-print("\n ===== ALL SKILLGAPS =====")
+    # ================= USER PROFILE =================
 
-weak_skills=[]
+    print("\n===== USER PROFILE =====")
 
-if java<4:
-    weak_skills.append("Java")
+    print("Name:", name)
+    print("Target Job:", target.title())
 
-if dsa<4:
-    weak_skills.append("DSA")
+    print("\nYour Skills:")
 
-if python<4:
-    weak_skills.append("Python")
+    for skill, level in skills.items():
+        print(skill + ":", level)
 
-if sql<4:
-    weak_skills.append("SQL")
 
-if ml<4:
-    weak_skills.append("Machine Learning")
+    # ================= SKILL ANALYSIS =================
 
-if oop<4:
-    weak_skills.append("object oriented programing")
+    print("\n===== SKILL ANALYSIS =====")
 
-if dl<4:
-    weak_skills.append("Deep Learning")
+    for skill, level in skills.items():
 
-if len(weak_skills)==0:
-    print("No Weak Skills")
-else:
-    print("Weak Skills:")
+        if level >= 7:
+            print(skill + ": Strong")
+
+        elif level >= 4:
+            print(skill + ": Average")
+
+        else:
+            print(skill + ": Weak")
+
+
+    # ================= CAREER READINESS SCORE =================
+
+    print("\n===== CAREER READINESS =====")
+
+    total = sum(skills.values())
+
+    maximum = len(required_skills) * 10
+
+    score = total / maximum * 100
+
+    print("Career Readiness Score:",
+          round(score, 2), "%")
+
+    if score >= 80:
+        print("Status: Excellent")
+
+    elif score >= 60:
+        print("Status: Good")
+
+    elif score >= 40:
+        print("Status: Needs Improvement")
+
+    else:
+        print("Status: Beginner")
+
+
+    # ================= WEAKEST SKILL DETECTION =================
+
+    print("\n===== WEAKEST SKILL DETECTION =====")
+
+    weakest_skill = min(skills, key=skills.get)
+
+    print("Weakest Skill:", weakest_skill)
+    print("Current Level:", skills[weakest_skill])
+
+
+    # ================= MULTIPLE SKILL GAP DETECTION =================
+
+    print("\n===== MULTIPLE SKILL GAP DETECTION =====")
+
+    weak_skills = []
+
+    for skill, level in skills.items():
+
+        if level < 4:
+            weak_skills.append(skill)
+
+    if len(weak_skills) == 0:
+
+        print("No weak skills.")
+
+    else:
+
+        print("Skills that need improvement:")
+
+        for skill in weak_skills:
+            print("-", skill)
+
+
+# ================= SKILL MATCH ANALYSIS =================
+
+print("\n===== SKILL MATCH ANALYSIS =====") 
+ 
+matched_skills = [] 
+missing_skills = [] 
+ 
+for skill, level in skills.items(): 
+ 
+    if level == 0: 
+        missing_skills.append(skill) 
+    else: 
+        matched_skills.append(skill) 
+ 
+ 
+print("Target Job:", target.title()) 
+ 
+print("\nMatched Skills:") 
+ 
+if len(matched_skills) == 0: 
+    print("No matched skills.") 
+else: 
+    for skill in matched_skills: 
+        print("-", skill) 
+ 
+ 
+print("\nMissing Skills:") 
+ 
+if len(missing_skills) == 0: 
+    print("No missing skills.") 
+else: 
+    for skill in missing_skills: 
+        print("-", skill)
+
+
+    # ================= PERSONALIZED ROADMAP =================
+
+    print("\n===== PERSONALIZED ROADMAP =====")
+
+    roadmaps = {
+
+        "Python": [
+            "Python Basics",
+            "Functions",
+            "Lists and Dictionaries",
+            "OOP in Python",
+            "Python Project"
+        ],
+
+        "DSA": [
+            "Arrays",
+            "Strings",
+            "Hashing",
+            "Two Pointers",
+            "Trees"
+        ],
+
+        "SQL": [
+            "SQL Basics",
+            "Joins",
+            "Subqueries",
+            "Grouping and Aggregation",
+            "Advanced SQL"
+        ],
+
+        "Machine Learning": [
+            "Python for Machine Learning",
+            "NumPy and Pandas",
+            "Machine Learning Basics",
+            "Model Evaluation",
+            "Machine Learning Project"
+        ],
+
+        "Deep Learning": [
+            "Neural Networks",
+            "Deep Learning Basics",
+            "CNN",
+            "RNN",
+            "Deep Learning Project"
+        ],
+
+        "Java": [
+            "Java Basics",
+            "Variables and Data Types",
+            "Conditions and Loops",
+            "Arrays",
+            "Methods",
+            "Collections",
+            "Exception Handling",
+            "Java Problems"
+        ],
+
+        "OOP": [
+            "Classes and Objects",
+            "Constructors",
+            "Encapsulation",
+            "Inheritance",
+            "Polymorphism",
+            "Abstraction",
+            "Interfaces"
+        ]
+    }
+
 
     for skill in weak_skills:
-        print("-",skill)
 
+        print("\nRoadmap for", skill)
 
-print("\n ===== JOB REQUIREMENT ANALYSIS =====")
+        if skill in roadmaps:
 
-job=target.lower()
+            topics = roadmaps[skill]
 
-if "ai" in job or "ml" in job:
-    required_skills=["Python","DSA","SQL","Machine Learning","Deep Learning"]
+            for i in range(len(topics)):
+                print(i + 1, "-", topics[i])
 
-elif "software" in job or "developer" in job:
-    required_skills=["Java","DSA","SQL","OOP"]
+        else:
 
-else:
-    required_skills=["DSA","SQL","Python"]
-
-print("Target Job:",target)
-print("Required Skills:")
-
-for skill in required_skills:
-    print("-",skill)
-
-
-print("\n ===== SKILL MATCH ANALYSIS =====")
-
-missing_skills=[]
-
-for skill in required_skills:
-    if skill=="Java" and java==0:
-        missing_skills.append(skill)
-    elif skill=="DSA" and dsa==0:
-        missing_skills.append(skill)
-    elif skill=="SQL" and sql==0:
-        missing_skills.append(skill)
-    elif skill=="OOP" and oop==0:
-        missing_skills.append(skill)
-    elif skill=="Python" and python==0:
-        missing_skills.append(skill)
-    elif skill=="Machine Learning" and ml==0:
-        missing_skills.append(skill)
-    elif skill=="Deep Learning" and dl==0:
-            missing_skills.append(skill)
-
-print("Target job:",target)
-print("Missing skills:")
-if len(missing_skills)==0:
-    print("No missing skills!")
-else:
-    for skill in missing_skills:
-        print("-",skill)
-
-
-print("\n ===== PERSONALIZED ROADMAP ======")
-roadmaps={
-    "Machine Learning":[
-        "Python for machine learning",
-        "NumPy and Pandas",
-        "Machine Learning Basics",
-        "Model Evaluation",
-        "Build a Machine Learning project"],
-    "DSA":["Arrays",
-        "Strings",
-        "Hashing",
-        "Two pointers",
-        "Trees"
-           ],
-    "Python":[
-        "Python Basics",
-        "Functions",
-        "Lists and Dictionaries",
-        "OOP in Python",
-        "Python Project"
-    ],
-    "Sql":[
-        "SQL Basics",
-        "Joins",
-        "Subqueries",
-        "Grouping and Aggregation",
-        "Advanced SQL"
-    ],
-    "Deep Learning":[
-        "Nueral Networks",
-        "Deep Learning Basics",
-        "CNN",
-        "RNN",
-        "Build a deep Learning Project"
-    ],
-    "Java":[
-        "Java Basics",
-        "Variables and Data Types",
-        "Conditions and Loops",
-        "Arrays",
-        "Methods",
-        "Collections",
-        "Exception Handling",
-        "File Handling",
-        "Practice java problems"
-    ],
-    "OOP":[
-        "Classes and Objects",
-        "Constructors",
-        "Encapsulation",
-        "Inheritance",
-        "Polymorphism",
-        "Abstraction",
-        "Interfaces",
-        "Practice OOP Problems"
-    ]}
-def show_roadmap(skill):
-
-    if skill in roadmaps:
-
-        print("\n Roadmap for",skill)
-
-        topics=roadmaps[skill]
-
-        for i in range(len(topics)):
-            print(i+1,"-",topics[i])
-    else:
-        print("Roadmap is not available yet.")
-
-for skill in missing_skills:
-    show_roadmap(skill)
+            print("Roadmap not available.")
