@@ -1,5 +1,6 @@
 print("===== AI CAREER TWIN =====")
 
+
 # ================= USER PROFILE =================
 
 name = input("Enter your name: ")
@@ -32,11 +33,25 @@ jobs = {
 }
 
 
+# ================= REQUIRED SKILL LEVELS =================
+
+required_levels = {
+    "Python": 8,
+    "Java": 8,
+    "DSA": 7,
+    "OOP": 8,
+    "SQL": 7,
+    "Machine Learning": 8,
+    "Deep Learning": 7
+}
+
+
 # ================= CHECK TARGET JOB =================
 
 if target not in jobs:
 
     print("\nJob not available.")
+
     print("Available jobs:")
 
     for job in jobs:
@@ -45,6 +60,7 @@ if target not in jobs:
 else:
 
     required_skills = jobs[target]["skills"]
+
 
     # ================= JOB REQUIREMENT ANALYSIS =================
 
@@ -69,11 +85,40 @@ else:
 
     for skill in required_skills:
 
-        level = int(input(
-            "Enter your " + skill + " level (1-10): "
-        ))
+        level = int(
+            input(
+                "Enter your " + skill + " level (1-10): "
+            )
+        )
 
         skills[skill] = level
+
+
+    # ================= SKILL GAP ANALYSIS =================
+
+    print("\n===== SKILL GAP ANALYSIS =====")
+
+    skill_gaps = {}
+
+    for skill in required_skills:
+
+        required = required_levels[skill]
+
+        current = skills[skill]
+
+        gap = required - current
+
+        if gap < 0:
+            gap = 0
+
+        skill_gaps[skill] = gap
+
+        print(
+            skill,
+            "| Required Level:", required,
+            "| Your Level:", current,
+            "| Gap:", gap
+        )
 
 
     # ================= USER PROFILE =================
@@ -86,6 +131,7 @@ else:
     print("\nYour Skills:")
 
     for skill, level in skills.items():
+
         print(skill + ":", level)
 
 
@@ -115,8 +161,11 @@ else:
 
     score = total / maximum * 100
 
-    print("Career Readiness Score:",
-          round(score, 2), "%")
+    print(
+        "Career Readiness Score:",
+        round(score, 2),
+        "%"
+    )
 
     if score >= 80:
         print("Status: Excellent")
@@ -135,10 +184,20 @@ else:
 
     print("\n===== WEAKEST SKILL DETECTION =====")
 
-    weakest_skill = min(skills, key=skills.get)
+    weakest_skill = min(
+        skills,
+        key=skills.get
+    )
 
-    print("Weakest Skill:", weakest_skill)
-    print("Current Level:", skills[weakest_skill])
+    print(
+        "Weakest Skill:",
+        weakest_skill
+    )
+
+    print(
+        "Current Level:",
+        skills[weakest_skill]
+    )
 
 
     # ================= MULTIPLE SKILL GAP DETECTION =================
@@ -161,42 +220,51 @@ else:
         print("Skills that need improvement:")
 
         for skill in weak_skills:
+
             print("-", skill)
 
 
-# ================= SKILL MATCH ANALYSIS =================
+    # ================= SKILL MATCH ANALYSIS =================
 
-print("\n===== SKILL MATCH ANALYSIS =====") 
- 
-matched_skills = [] 
-missing_skills = [] 
- 
-for skill, level in skills.items(): 
- 
-    if level == 0: 
-        missing_skills.append(skill) 
-    else: 
-        matched_skills.append(skill) 
- 
- 
-print("Target Job:", target.title()) 
- 
-print("\nMatched Skills:") 
- 
-if len(matched_skills) == 0: 
-    print("No matched skills.") 
-else: 
-    for skill in matched_skills: 
-        print("-", skill) 
- 
- 
-print("\nMissing Skills:") 
- 
-if len(missing_skills) == 0: 
-    print("No missing skills.") 
-else: 
-    for skill in missing_skills: 
-        print("-", skill)
+    print("\n===== SKILL MATCH ANALYSIS =====")
+
+    matched_skills = []
+    missing_skills = []
+
+    for skill, level in skills.items():
+
+        if level == 0:
+            missing_skills.append(skill)
+
+        else:
+            matched_skills.append(skill)
+
+
+    print("Target Job:", target.title())
+
+
+    print("\nMatched Skills:")
+
+    if len(matched_skills) == 0:
+
+        print("No matched skills.")
+
+    else:
+
+        for skill in matched_skills:
+            print("-", skill)
+
+
+    print("\nMissing Skills:")
+
+    if len(missing_skills) == 0:
+
+        print("No missing skills.")
+
+    else:
+
+        for skill in missing_skills:
+            print("-", skill)
 
 
     # ================= PERSONALIZED ROADMAP =================
@@ -277,7 +345,12 @@ else:
             topics = roadmaps[skill]
 
             for i in range(len(topics)):
-                print(i + 1, "-", topics[i])
+
+                print(
+                    i + 1,
+                    "-",
+                    topics[i]
+                )
 
         else:
 
