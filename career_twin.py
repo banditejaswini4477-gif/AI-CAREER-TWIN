@@ -155,17 +155,22 @@ else:
 
     print("\n===== CAREER READINESS =====")
 
-    total = sum(skills.values())
+    total_ratio = 0
 
-    maximum = len(required_skills) * 10
+    for skill in required_skills:
 
-    score = total / maximum * 100
+        required=required_levels[skill]
+        current=skills[skill]
 
-    print(
-        "Career Readiness Score:",
-        round(score, 2),
-        "%"
-    )
+        if current>=required:
+            ratio=1
+        else:
+            ratio=current/required
+        total_ratio+=ratio
+
+    score=(total_ratio/len(required_skills))*100
+
+    print("Career Readiness Score:",round(score,2),"%")
 
     if score >= 80:
         print("Status: Excellent")
