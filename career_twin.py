@@ -94,7 +94,7 @@ else:
         skills[skill] = level
 
 
-    # ================= SKILL GAP ANALYSIS =================
+    # ================= DAY 9: SKILL GAP ANALYSIS =================
 
     print("\n===== SKILL GAP ANALYSIS =====")
 
@@ -360,3 +360,125 @@ else:
         else:
 
             print("Roadmap not available.")
+
+
+print("\n===== END OF CAREER TWIN =====")
+
+
+
+# ================= DAY 11 ================= 
+# CAREER COMPARISON & ALTERNATIVE CAREER RECOMMENDATION 
+ 
+ 
+# ================= ALL SKILLS ================= 
+ 
+all_skills = list(required_levels.keys()) 
+ 
+ 
+# ================= ENTER ALL USER SKILLS ================= 
+ 
+print("\n===== ENTER YOUR OVERALL SKILL LEVELS =====") 
+ 
+user_skills = {} 
+ 
+for skill in all_skills: 
+ 
+    level = int( 
+        input( 
+            "Enter your " + skill + " level (1-10): " 
+        ) 
+    ) 
+ 
+    user_skills[skill] = level 
+ 
+ 
+# ================= CAREER FIT ANALYSIS ================= 
+ 
+career_fit_scores = {} 
+ 
+for career, details in jobs.items(): 
+ 
+    career_skills = details["skills"] 
+ 
+    total_ratio = 0 
+ 
+    for skill in career_skills: 
+ 
+        required = required_levels[skill] 
+        current = user_skills[skill] 
+ 
+        if current >= required: 
+            ratio = 1 
+        else: 
+            ratio = current / required 
+ 
+        total_ratio += ratio 
+ 
+    fit_score = ( 
+        total_ratio / len(career_skills) 
+    ) * 100 
+ 
+    career_fit_scores[career] = fit_score 
+ 
+ 
+# ================= CAREER COMPARISON ================= 
+ 
+print("\n===== CAREER COMPARISON =====") 
+ 
+sorted_careers = sorted( 
+    career_fit_scores.items(), 
+    key=lambda x: x[1], 
+    reverse=True 
+) 
+ 
+for career, score in sorted_careers: 
+ 
+    print( 
+        career.title(), 
+        ":", 
+        round(score, 2), 
+        "%" 
+    ) 
+ 
+ 
+# ================= BEST CAREER RECOMMENDATION ================= 
+ 
+print("\n===== CAREER RECOMMENDATION =====") 
+ 
+best_career = sorted_careers[0][0] 
+best_score = sorted_careers[0][1] 
+ 
+print( 
+    "Best Career Fit:", 
+    best_career.title() 
+) 
+ 
+print( 
+    "Career Fit Score:", 
+    round(best_score, 2), 
+    "%" 
+) 
+ 
+ 
+# ================= ALTERNATIVE CAREERS ================= 
+ 
+print("\n===== ALTERNATIVE CAREERS =====") 
+ 
+if len(sorted_careers) > 1: 
+ 
+    for i in range(1, len(sorted_careers)): 
+ 
+        career, score = sorted_careers[i] 
+ 
+        print( 
+            i, 
+            "-", 
+            career.title(), 
+            "| Fit:", 
+            round(score, 2), 
+            "%" 
+        ) 
+ 
+else: 
+ 
+    print("No alternative careers available.")
