@@ -482,3 +482,120 @@ if len(sorted_careers) > 1:
 else: 
  
     print("No alternative careers available.")
+
+
+# ================= DAY 12 =================
+# CAREER TRANSITION ANALYSIS
+
+print("\n===== CAREER TRANSITION ANALYSIS =====")
+
+current_career = best_career
+target_career = target
+
+
+print(
+    "Current Best-Fit Career:",
+    current_career.title()
+)
+
+print(
+    "Target Career:",
+    target_career.title()
+)
+
+
+# ================= SAME CAREER CHECK =================
+
+if current_career == target_career:
+
+    print("\nYou are already aligned with your target career.")
+
+    print("No career transition is required.")
+
+
+else:
+
+    current_career_skills = set(
+        jobs[current_career]["skills"]
+    )
+
+    target_career_skills = set(
+        jobs[target_career]["skills"]
+    )
+
+
+    # ================= COMMON SKILLS =================
+
+    common_skills = (
+        current_career_skills
+        .intersection(target_career_skills)
+    )
+
+
+    # ================= ADDITIONAL SKILLS =================
+
+    additional_skills = (
+        target_career_skills
+        .difference(current_career_skills)
+    )
+
+
+    # ================= DISPLAY COMMON SKILLS =================
+
+    print("\n===== COMMON SKILLS =====")
+
+    if len(common_skills) == 0:
+
+        print("No common skills.")
+
+    else:
+
+        for skill in sorted(common_skills):
+
+            print("-", skill)
+
+
+    # ================= DISPLAY ADDITIONAL SKILLS =================
+
+    print("\n===== ADDITIONAL SKILLS NEEDED =====")
+
+    if len(additional_skills) == 0:
+
+        print(
+            "No additional career-specific skills required."
+        )
+
+    else:
+
+        for skill in sorted(additional_skills):
+
+            print("-", skill)
+
+
+    # ================= TRANSITION SUMMARY =================
+
+    print("\n===== CAREER TRANSITION SUMMARY =====")
+
+    print(
+        current_career.title(),
+        "→",
+        target_career.title()
+    )
+
+    if len(additional_skills) == 0:
+
+        print(
+            "Your current career path already covers the main skills of your target career."
+        )
+
+    else:
+
+        print(
+            "To transition to",
+            target_career.title(),
+            "focus on:"
+        )
+
+        for skill in sorted(additional_skills):
+
+            print("-", skill)
